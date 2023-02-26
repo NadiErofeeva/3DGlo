@@ -9,11 +9,14 @@ let dayTime = '';
 
 if (nowDate.getHours() < 12 && nowDate.getHours() >= 6) {
     dayTime = 'Доброе утро'
-} else if (nowDate.getHours() < 18 && nowDate.getHours() >= 12) {
+}
+if (nowDate.getHours() < 18 && nowDate.getHours() >= 12) {
     dayTime = 'Добрый день'
-} else if (nowDate.getHours() < 22 && nowDate.getHours() >= 18) {
+}
+if (nowDate.getHours() < 22 && nowDate.getHours() >= 18) {
     dayTime = 'Добрый вечер'
-} else {
+}
+if (nowDate.getHours() < 6 && nowDate.getHours() >= 22)  {
     dayTime = 'Доброй ночи'
 }
 

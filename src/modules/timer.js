@@ -16,31 +16,32 @@ const timer = (deadline) => {
         return {timeRemaining, days, hours, minutes, seconds}
     }
 
+    const addClockEl = (time) => {
+        if (time < 10) {
+            return '0' + time
+        } else {
+            return time
+        }
+    }
+
     const updateClock = () => {
         let getTime = getTimeRemaining();
-        timerHours.textContent = getTime.hours < 10 ? '0' + getTime.hours : getTime.hours;
-        timerMinutes.textContent = getTime.minutes < 10 ? '0' + getTime.minutes : getTime.minutes;
-        timerSeconds.textContent = getTime.seconds < 10 ? '0' + getTime.seconds : getTime.seconds;
-        timerDays.textContent = getTime.days < 10 ? '0' + getTime.days : getTime.days;
 
-        /*if (getTime.timeRemaining > 0) {
-            setTimeout(updateClock, 1000)
-            console.log('hi')
-        }*/
+        timerHours.textContent = addClockEl(getTime.hours);
+        timerMinutes.textContent = addClockEl(getTime.minutes);
+        timerSeconds.textContent = addClockEl(getTime.seconds);
+        timerDays.textContent = addClockEl(getTime.days);
+
         console.log('hi')
 
     }
 
-    let interval = setInterval(()=>{
+    let interval = setInterval(()=>
+    {
         let getTime = getTimeRemaining();
-        if (getTime.timeRemaining > 0) {
-            updateClock();
-        } else  {
-            clearInterval(interval)
-        }
+        getTime.timeRemaining > 0 ? updateClock() : clearInterval(interval);
+
     },1000)
-
-
 }
 
 export default timer
