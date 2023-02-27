@@ -23,7 +23,6 @@ const modal = () => {
         const modalAnim = () => {
             opacity -= 0.1;
             modal.style.opacity = opacity;
-
             if (opacity > 0) {
                 requestAnimationFrame(modalAnim);
             } else {
