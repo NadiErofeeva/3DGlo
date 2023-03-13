@@ -32,8 +32,6 @@ const timer = (deadline) => {
         timerSeconds.textContent = addClockEl(getTime.seconds);
         timerDays.textContent = addClockEl(getTime.days);
 
-        console.log('hi')
-
     }
 
     let interval = setInterval(()=>

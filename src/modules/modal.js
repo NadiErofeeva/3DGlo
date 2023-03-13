@@ -1,7 +1,6 @@
 const modal = () => {
     const modal = document.querySelector('.popup');
     const buttons = document.querySelectorAll('.popup-btn');
-    const closeBtn = modal.querySelector('.popup-close');
     const widthOpenWindow = document.documentElement.offsetWidth;
     let opacity = 0;
 
@@ -38,8 +37,11 @@ const modal = () => {
         })
     })
 
-    closeBtn.addEventListener('click', () => {
-        widthOpenWindow >= '768' ? modalClose() : modal.style.display = 'none';
+    modal.addEventListener('click', (e) => {
+        const tar = e.target;
+        if (!tar.closest('.popup-content') || tar.classList.contains('popup-close')) {
+            modal.style.display = 'none';
+        }
     })
 }
 
