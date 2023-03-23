@@ -4,6 +4,7 @@ import modal from './modules/modal';
 import valid from './modules/valid';
 import tabs from './modules/tabs';
 import scroll from './modules/scroll';
+import slider from './modules/slider';
 
 timer('28 june 2023');
 menu();
@@ -11,3 +12,4 @@ modal();
 valid();
 tabs();
 scroll();
+slider();
