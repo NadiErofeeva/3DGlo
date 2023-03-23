@@ -12,4 +12,10 @@ modal();
 valid();
 tabs();
 scroll();
-slider();
+
+slider({
+    slider: 'portfolio-content',
+    items: 'portfolio-item',
+    slideActive: 'portfolio-item-active',
+    dotActive: 'dot-active'
+})
