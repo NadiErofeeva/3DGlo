@@ -6,6 +6,8 @@ const calc = (price = 100) => {
     const calcDay = document.querySelector('.calc-day')
     const total = document.getElementById('total')
 
+    let totalTime = null;
+
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -32,7 +34,7 @@ const calc = (price = 100) => {
 
         changeTime(totalValue);
     }
-    let totalTime = null;
+
     calcBlock.addEventListener('input', (e) => {
 
         if (e.target === calcType || e.target === calcSquare ||
