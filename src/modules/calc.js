@@ -30,17 +30,35 @@ const calc = (price = 100) => {
             totalValue = 0;
         }
 
-        total.textContent = totalValue;
+        changeTime(totalValue);
     }
-
+    let totalTime = null;
     calcBlock.addEventListener('input', (e) => {
 
         if (e.target === calcType || e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
             countCalc()
         }
-
     })
+
+    const changeTime = (totalValue) => {
+
+        if (totalValue === 0) {
+            return
+        }
+
+        const step = totalValue / 10;
+        let n = 0;
+        clearInterval(totalTime)
+        totalTime = setInterval (() => {
+            n += step;
+            console.log(totalValue)
+            if (n === totalValue) {
+                clearInterval(totalTime)
+            }
+            total.textContent = n;
+        }, 50)
+    }
 }
 
 export default calc
