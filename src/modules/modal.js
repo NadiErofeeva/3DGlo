@@ -1,3 +1,5 @@
+import { animate } from './helpers'
+
 const modal = () => {
     const modal = document.querySelector('.popup');
     const buttons = document.querySelectorAll('.popup-btn');
@@ -6,29 +8,39 @@ const modal = () => {
 
     const modalOpen = () => {
         modal.style.display = 'block';
-        modal.style.opacity = opacity;
 
-        const modalAnim = () => {
-            opacity += 0.1;
-            modal.style.opacity = opacity;
-            if (opacity < 1) {
-                requestAnimationFrame(modalAnim)
+        animate({
+            duration: 1000,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw(progress) {
+                if (opacity < 1) {
+                    modal.style.opacity = progress;
+                }
             }
-        }
-        requestAnimationFrame(modalAnim);
+        });
     }
 
     const modalClose = () => {
-        const modalAnim = () => {
-            opacity -= 0.1;
-            modal.style.opacity = opacity;
-            if (opacity > 0) {
-                requestAnimationFrame(modalAnim);
-            } else {
-                modal.style.display = 'none';
+        animate({
+            duration: 1000,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw(progress) {
+                if (modal.style.opacity) {
+                    modal.style.opacity = 1 + (-progress);
+
+                } else {
+                    modal.style.display = 'none';
+                }
             }
-        }
-        requestAnimationFrame(modalAnim);
+        });
+
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 1000)
     }
 
     buttons.forEach(btn => {
@@ -38,9 +50,8 @@ const modal = () => {
     })
 
     modal.addEventListener('click', (e) => {
-        const tar = e.target;
-        if (!tar.closest('.popup-content') || tar.classList.contains('popup-close')) {
-            modal.style.display = 'none';
+        if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+            modalClose();
         }
     })
 }
