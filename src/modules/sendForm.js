@@ -1,20 +1,30 @@
 const sendForm = ({ formId, someElem = [] }) => {
     const form = document.getElementById(formId);
     const statusBlock = document.createElement('div');
-    const loadText = 'Загрузка....';
+    //const loadText = 'Загрузка....';
     const errorText = 'Ошибка!!!';
     const successText = 'Спасибо! Наш менеджер с вами свяжется';
 
+
+    const loader = '<section style="flex: 1 1 25%;">\n' +
+        '  <div class=\'sk-wave\'>\n' +
+        '    <div class=\'sk-rect sk-rect-1\'></div>\n' +
+        '    <div class=\'sk-rect sk-rect-2\'></div>\n' +
+        '    <div class=\'sk-rect sk-rect-3\'></div>\n' +
+        '    <div class=\'sk-rect sk-rect-4\'></div>\n' +
+        '    <div class=\'sk-rect sk-rect-5\'></div>\n' +
+        '  </div>\n' +
+        '</section>';
+
+
+
     const validate = (list) => {
         let success = true;
-
-        list.forEach(input => {
-            /*if (!input.classList.contains('success')) {
+        /*list.forEach(input => {
+            /!*if (!input.classList.contains('success')) {
                 success = false;
-            }*/
-
-
-        })
+            }*!/
+        })*/
         return success
     }
 
@@ -33,7 +43,8 @@ const sendForm = ({ formId, someElem = [] }) => {
         const formData = new FormData(form);
         const formBody = {}
 
-        statusBlock.textContent = loadText;
+        //statusBlock.textContent = loadText;
+        statusBlock.insertAdjacentHTML('beforeend', loader);
         statusBlock.style.color = '#fff';
         form.append(statusBlock);
 
@@ -54,7 +65,7 @@ const sendForm = ({ formId, someElem = [] }) => {
         if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
-                    statusBlock.textContent = successText
+                    statusBlock.textContent = successText;
 
                     formElements.forEach(input => {
                         input.value= ''
