@@ -6,6 +6,7 @@ import tabs from './modules/tabs';
 import scroll from './modules/scroll';
 import slider from './modules/slider';
 import calc from './modules/calc';
+import sendForm from './modules/sendForm';
 
 timer('28 june 2023');
 menu();
@@ -14,6 +15,37 @@ valid();
 tabs();
 scroll();
 calc(100);
+sendForm({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+});
+
+sendForm({
+    formId: 'form2',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+});
+
+sendForm({
+    formId: 'form3',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+});
+
+
 
 slider({
     slider: 'portfolio-content',
