@@ -4,6 +4,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     //const loadText = 'Загрузка....';
     const errorText = 'Ошибка!!!';
     const successText = 'Спасибо! Наш менеджер с вами свяжется';
+    const formElements = form.querySelectorAll('input');
 
 
     const loader = '<section style="flex: 1 1 25%;">\n' +
@@ -39,7 +40,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     }
 
     const submitForm = () => {
-        const formElements = form.querySelectorAll('input');
+
         const formData = new FormData(form);
         const formBody = {}
 
@@ -85,8 +86,19 @@ const sendForm = ({ formId, someElem = [] }) => {
         }
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+            let isSubmit = true;
+            for (let i = 0; formElements.length > i; i++) {
+                if (!formElements[i].value) {
+                    isSubmit = false
+                    break;
+                }
+            }
 
-            submitForm();
+            if (isSubmit) {
+                submitForm();
+            } else {
+                alert('Не все поля заполнены')
+            }
         })
     } catch (error) {
         console.log(error.message)
