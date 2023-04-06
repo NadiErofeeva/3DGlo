@@ -35,38 +35,31 @@ const valid = () => {
                 k.preventDefault();
 
                 if (/^[\d\+][\d\(\)\ -]{4,14}\d$/g.test(tel.value)) {
-                    tel.style.border = '1px solid green';
                     console.log('tel')
                 } else {
-                    tel.style.border = '1px solid red';
                     alert('Введите номер телефона полностью и цифрами')
                 }
 
 
                 if(/^([а-яА-ЯёЁ]+\s)*[а-яА-ЯёЁ]*$/g.test(text.value)) {
-                    text.style.border = '1px solid green'
                     console.log('text')
                 } else {
-                    text.style.border = '1px solid red';
                     alert('Имя русскими символами')
                 }
 
                 if(/^(((\w*\.)|(\w*\-))*\w*)@(\w*\.)+([a-z]+)$/g.test(email.value)) {
-                    email.style.border = '1px solid green';
                     console.log('email')
                 } else {
-                    email.style.border = '1px solid red';
                     alert('Введите email')
                 }
-                if (textarea) {
-                    if(/^([а-яА-ЯёЁ]+\s)*[а-яА-ЯёЁ]*$/g.test(textarea.value)) {
-                        textarea.style.border = '1px solid green';
+
+                /*if (textarea) {
+                    if(/^([а-яА-я] ?)+-( ?[а-яА-я])+$/g.test(textarea.value)) {
                         console.log('textarea')
                     } else {
-                        textarea.style.border = '1px solid red';
                         alert('Введите сообщение на русском')
                     }
-                }
+                }*/
             })
 ///////////////////////////////////////Усложненное задание №2
             e.querySelectorAll('input').forEach((input) => {
@@ -83,7 +76,7 @@ const valid = () => {
 
                     if (event.target.type === 'text') {
                         const reg = /[^а-яА-Я\s\-]/g;
-                        const regRus = /^([а-яА-ЯёЁ]+\s)*[а-яА-ЯёЁ]*$/g;
+                        const regRus = /^([а-яА-я] ?)+-( ?[а-яА-я])+$/g;
                         event.target.value = event.target.value.replace(reg, "");
                         if (event.target.value === '') {
                            console.log(event.target.value)

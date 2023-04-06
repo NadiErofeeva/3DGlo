@@ -55,11 +55,13 @@ const sendForm = ({ formId, someElem = [] }) => {
 
         someElem.forEach(elem => {
             const element = document.getElementById(elem.id)
-
             if (elem.type === 'block') {
-                formBody[elem.id] = element.textContent;
+                if (!(element.textContent === '0')) {
+                    formBody[elem.id] = element.textContent;
+                }
             } else if (elem.type === 'input') {
                 formBody[elem.id] = element.value;
+                console.log('element.value - ' + element.value)
             }
         })
 
@@ -89,15 +91,27 @@ const sendForm = ({ formId, someElem = [] }) => {
             let isSubmit = true;
             for (let i = 0; formElements.length > i; i++) {
                 if (!formElements[i].value) {
-                    isSubmit = false
-                    break;
+                    if (!(formElements[i].classList.contains('mess'))) {
+                        isSubmit = false
+                        break;
+                    }
+                }
+                if (formElements[i].type === 'email') {
+                    if(/^(((\w*\.)|(\w*\-))*\w*)@(\w*\.)+([a-z]+)$/g.test(formElements[i].value)) {
+                        continue;
+                    } else {
+                        isSubmit = false
+                    }
                 }
             }
 
             if (isSubmit) {
                 submitForm();
+                setTimeout(() => {
+                    statusBlock.textContent = '';
+                }, 3000)
             } else {
-                alert('Не все поля заполнены')
+                console.log('Ошибка в заполнении формы')
             }
         })
     } catch (error) {

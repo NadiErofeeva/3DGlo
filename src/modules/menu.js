@@ -8,6 +8,7 @@ const menu = () => {
 
     body.addEventListener('click', (e) => {
         if (e.target.closest('.menu') || e.target.closest('.close-btn')) {
+            e.preventDefault()
             handleMenu()
         }
         else if (!e.target.closest('menu')) {
